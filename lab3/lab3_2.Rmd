@@ -48,9 +48,17 @@ In the previous part of the lab, you exported a `.csv` of hot springs data. Let'
 hot_springs <- readr::read_csv("hsprings_data.csv")
 ```
 
+```{r}
+spec(hot_springs)
+```
+
 Use the `str()` function to get an idea of the data structure of `hot_springs`.  
 ```{r}
 str(hot_springs)
+```
+
+```{r}
+glimpse(hot_springs)
 ```
 
 What is the class of the scientist column? Change it to factor and then show the levels of that factor.  
@@ -59,8 +67,11 @@ class(hot_springs$scientist)
 ```
 
 ```{r}
+class(hot_springs$depth_ft)
+```
+
+```{r}
 hot_springs$scientist <- as.factor(hot_springs$scientist)
-class(hot_springs$scientist)
 ```
 
 ```{r}
@@ -72,13 +83,20 @@ levels(hot_springs$scientist)
 
 The data are from: Gaeta J., G. Sass, S. Carpenter. 2012. Biocomplexity at North Temperate Lakes LTER: Coordinated Field Studies: Large Mouth Bass Growth 2006. Environmental Data Initiative.  [link](https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-ntl&identifier=267)  
 ```{r}
+getwd()
+```
+
+```{r}
 fish <- readr::read_csv("data/Gaeta_etal_CLC_data.csv")
 ```
 
 2. What is the structure of these data?
 ```{r}
 str(fish)
-spec(fish)
+```
+
+```{r}
+glimpse(fish)
 ```
 
 Notice that when the data are imported, you are presented with a message that tells you how R interpreted the column classes. This is also where error messages will appear if there are problems.  
@@ -98,32 +116,32 @@ glimpse(fish)
 
 `nrow()` gives the numbers of rows.
 ```{r}
-nrow(fish) #the number of rows or observations
+nrow(fish)
 ```
 
 `ncol` gives the number of columns.
 ```{r}
-ncol(fish) #the number of columns or variables
+ncol(fish)
 ```
 
 `dim()` gives the dimensions.
 ```{r}
-dim(fish) #total dimensions
+dim(fish)
 ```
 
 `names` gives the column names.
 ```{r}
-names(fish) #column names
+names(fish)
 ```
 
 `head()` prints the first n rows of the data frame.
 ```{r}
-head(fish, n = 10)
+head(fish, n=15)
 ```
 
 `tail()` prinst the last n rows of the data frame.
 ```{r}
-tail(fish, n = 10)
+tail(fish)
 ```
 
 `table()` is useful when you have a limited number of categorical variables. It produces fast counts of the number of observations in a variable. We will come back to this later... 
@@ -136,10 +154,14 @@ We can also click on the `fish` data frame in the Environment tab or type View(f
 View(fish)
 ```
 
+```{r}
+names(fish)
+```
+
 ## Subset
 Subset is a way of pulling out observations that meet specific criteria in a variable.  
 ```{r}
-little_fish <- subset(fish, length<=100)
+little_fish <- subset(fish, length<=110)
 little_fish
 ```
 
@@ -151,17 +173,17 @@ mammals <- readr::read_csv("data/mammal_lifehistories_v2.csv")
 
 2. Provide the dimensions of the data frame.
 ```{r}
-dim(mammals)
+
 ```
 
 3. Check the column names in the data frame. 
 ```{r}
-names(mammals)
+
 ```
 
 4. Use `str()` to show the structure of the data frame and its individual columns; compare this to `glimpse()`. 
 ```{r}
-str(mammals)
+
 ```
 
 ```{r}
@@ -171,9 +193,8 @@ glimpse(mammals)
 5. . Try the `table()` command to produce counts of mammal order, family, and genus.  
 ```{r}
 table(mammals$order)
-table(mammals$family)
-table(mammals$Genus)
 ```
+
 
 ## Wrap-up
 Please review the learning goals and be sure to use the code here as a reference when completing the homework.  

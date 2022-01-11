@@ -20,6 +20,7 @@ output:
 
 ## Load tidyverse
 ```{r message=FALSE, warning=FALSE}
+#install.packages("tidyverse")
 library("tidyverse")
 ```
 
