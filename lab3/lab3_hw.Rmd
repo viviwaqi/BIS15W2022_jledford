@@ -18,15 +18,25 @@ Make sure to use the formatting conventions of RMarkdown to make your report nea
 library(tidyverse)
 ```
 
+```{r}
+setwd("~/Desktop/BIS15W2022_jledford/lab3")
+```
+
+```{r}
+msleep_old <- readr::read_csv("data/msleep_ggplot2.csv")
+```
+
 ## Mammals Sleep  
 1. For this assignment, we are going to use built-in data on mammal sleep patterns. From which publication are these data taken from? Since the data are built-in you can use the help function in R.
 ```{r}
-dim(msleep)
+View(msleep)
+?msleep
 ```
 
 2. Store these data into a new data frame `sleep`.  
 ```{r}
 sleep <- msleep
+is.data.frame(msleep)
 ```
 
 3. What are the dimensions of this data frame (variables and observations)? How do you know? Please show the *code* that you used to determine this below.  

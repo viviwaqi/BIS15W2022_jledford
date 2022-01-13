@@ -38,38 +38,43 @@ To keep things tidy, I am going to rename the variables in the mammals data.
 mammals <- rename(mammals, genus=Genus, wean_mass="wean mass", max_life="max. life", litter_size="litter size", litters_per_year="litters/year")
 ```
 
+```{r}
+#install.packages("janitor")
+library("janitor")
+```
+
 ## `filter()`
 Unlike `select()`, `filter()` allows us to extract data that meet specific criteria within a variable. Let's say that we are interested only in the fish that occur in lake "AL". We can use `filter()` to extract these observations.  
 ```{r}
-filter(fish, lakeid == "AL")
+
 ```
 
 Similarly, if we are only interested in fish with a length greater than or equal to 350 we can use `filter()` to extract these observations.  
 ```{r}
-filter(fish, length >= 350)
+
 ```
 
 + `filter()` allows all of the expected operators; i.e. >, >=, <, <=, != (not equal), and == (equal).  
 
 Using the `!` operator allows for the exclusion of specific observations.
 ```{r}
-filter(fish, lakeid != "AL")
+
 ```
 
 ## Using `filter()` with multiple observations  
 Filtering multiple values within the same variable requires the `%in%` [operator](https://www.tutorialspoint.com/r/r_operators.htm).    
 ```{r}
-filter(fish, length %in% c(167, 175))
+
 ```
 
 Alternatively, you can use `between` if you are looking for a range of specific values.  
 ```{r}
-filter(fish, between(scalelength, 2.5, 2.55))
+
 ```
 
 You can also extract observations "near" a certain value but you need to specify a tolerance.  
 ```{r}
-filter(fish, near(radii_length_mm, 2, tol = 0.2))
+
 ```
 
 ## Practice
@@ -96,12 +101,12 @@ filter(fish, near(radii_length_mm, 2, tol = 0.2))
 ## Using `filter()` on multiple conditions
 You can also use `filter()` to extract data based on multiple conditions. Below we extract only the fish that have lakeid "AL" and length >350.
 ```{r}
-filter(fish, lakeid == "AL" & length > 350)
+
 ```
 
 Notice that the `|` operator generates a different result.
 ```{r}
-filter(fish, lakeid == "AL" | length > 350)
+
 ```
 
 Rules:  

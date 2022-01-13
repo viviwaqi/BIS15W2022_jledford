@@ -49,6 +49,14 @@ summary(fish)
 names(fish)
 ```
 
+```{r}
+names(fish)
+```
+
+```{r}
+fish <- rename(fish, lake="lakeid")
+```
+
 ## Tidyverse
 The [tidyverse](www.tidyverse.org) is an "opinionated" collection of packages that make workflow in R easier. The packages operate more intuitively than base R commands and share a common organizational philosophy.  
 ![*Data Science Workflow in the Tidyverse.*](tidy-1.png)  
@@ -138,6 +146,22 @@ For this exercise we will use life history data for mammals. The [data](http://e
 **S. K. Morgan Ernest. 2003. Life history characteristics of placental non-volant mammals. Ecology 84:3402.**  
 ```{r}
 mammals <- readr::read_csv("data/mammal_lifehistories_v2.csv")
+```
+
+```{r}
+names(mammals)
+```
+
+```{r}
+library("janitor")
+```
+
+```{r}
+mammals <- clean_names(mammals)
+```
+
+```{r}
+mammals
 ```
 
 1. Use one or more of your favorite functions to assess the structure of the data.  
