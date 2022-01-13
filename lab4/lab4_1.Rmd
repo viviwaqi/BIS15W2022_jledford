@@ -49,14 +49,6 @@ summary(fish)
 names(fish)
 ```
 
-```{r}
-names(fish)
-```
-
-```{r}
-fish <- rename(fish, lake="lakeid")
-```
-
 ## Tidyverse
 The [tidyverse](www.tidyverse.org) is an "opinionated" collection of packages that make workflow in R easier. The packages operate more intuitively than base R commands and share a common organizational philosophy.  
 ![*Data Science Workflow in the Tidyverse.*](tidy-1.png)  
@@ -137,6 +129,10 @@ select_if(fish, is.numeric)
 ```
 
 To select all columns that are *not* a class of data, you need to add a `~`.
+```{r}
+select_if(fish, ~!is.numeric(.))
+```
+
 ```{r}
 select_if(fish, ~!is.numeric(.))
 ```
