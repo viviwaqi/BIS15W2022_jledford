@@ -133,10 +133,6 @@ To select all columns that are *not* a class of data, you need to add a `~`.
 select_if(fish, ~!is.numeric(.))
 ```
 
-```{r}
-select_if(fish, ~!is.numeric(.))
-```
-
 ## Practice  
 For this exercise we will use life history data for mammals. The [data](http://esapubs.org/archive/ecol/E084/093/) are from:  
 **S. K. Morgan Ernest. 2003. Life history characteristics of placental non-volant mammals. Ecology 84:3402.**  
@@ -144,23 +140,11 @@ For this exercise we will use life history data for mammals. The [data](http://e
 mammals <- readr::read_csv("data/mammal_lifehistories_v2.csv")
 ```
 
+1. Use one or more of your favorite functions to assess the structure of the data.  
 ```{r}
 names(mammals)
 ```
 
-```{r}
-library("janitor")
-```
-
-```{r}
-mammals <- clean_names(mammals)
-```
-
-```{r}
-mammals
-```
-
-1. Use one or more of your favorite functions to assess the structure of the data.  
 ```{r}
 glimpse(mammals)
 ```
@@ -171,7 +155,12 @@ anyNA(mammals)
 ```
 
 ```{r}
-mean(mammals$`max. life`)
+x <- mammals[ 11]
+colMeans(x)
+```
+
+```{r}
+summary(mammals)
 ```
 
 3. What are the names of the columns in the `mammals` data?
@@ -189,6 +178,10 @@ mammals_new
 ```{r}
 mass <- select(mammals_new, "genus", "species", "mass")
 mass
+```
+
+```{r}
+select(mammals_new, "species", "genus", "mass")
 ```
 
 6. What if we only wanted to exclude `order` and `family`? Use the `-` operator to make the code efficient.
@@ -211,13 +204,22 @@ Here are two examples of code that are super helpful to have in your bag of tric
 
 Imported data frames often have a mix of lower and uppercase column names. Use `toupper()` or `tolower()` to fix this issue. I always try to use lowercase to keep things consistent.  
 ```{r}
-#mammals <- select_all(mammals, tolower)
+mammals <- select_all(mammals, tolower)
+```
+
+```{r}
+names(mammals)
 ```
 
 When naming columns, blank spaces are often added (don't do this, please). Here is a trick to remove these.  
 ```{r}
-#select_all(mammals, ~str_replace(., " ", "_"))
+select_all(mammals, ~str_replace(., " ", "_"))
 ```
+
+```{r}
+select_all(mammals, ~str_replace(., "[ ._/]", "" ))
+```
+
 
 ## That's it! Take a break and I will see you on Zoom!  
 
