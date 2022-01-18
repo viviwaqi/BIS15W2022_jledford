@@ -76,10 +76,17 @@ mammals %>%
   filter(gestation>=15)
 ```
 
+```{r}
+names(fish)
+```
+
 ## Practice
 1. We are interested in the fish from the lakes "AL" and "AR" with a radii length between 2 and 4. Extract this information from the `fish` data. Use pipes!  
 ```{r}
-
+fish %>% 
+  filter(lakeid=="AL" | lakeid=="AR")  %>% 
+  filter(between(radii_length_mm, 2, 4)) %>% 
+  arrange(desc(radii_length_mm))
 ```
 
 ## `arrange()`
