@@ -11,7 +11,7 @@ output:
 ---
 
 ## Breakout Rooms  
-Please take 5-8 minutes to check over your answers to HW 2 in your group. If you are stuck, please remember that you can check the key in [Joel's repository](https://github.com/jmledford3115/BIS15LW2022_jledford).  
+Please take 5-8 minutes to check over your answers to HW 2 in your group. If you are stuck, please remember that you can check the key in [Joel's repository](https://github.com/jmledford3115/BIS15LW2021_jledford).  
 
 ## Learning Goals
 *At the end of this exercise, you will be able to:*    
@@ -38,6 +38,7 @@ An opinionated word about excel. It is fine to use excel for data entry and basi
 To import any file, first make sure that you are in the correct working directory. If you are not in the correct directory, R will not "see" the file.
 ```{r}
 getwd()
+setwd("~/Desktop/BIS15LW2021_jledford/lab3")
 ```
 
 ## Load the data
@@ -46,10 +47,6 @@ Here we open a .csv file. Since we are using the tidyverse, we open the file usi
 In the previous part of the lab, you exported a `.csv` of hot springs data. Let's try to reload that `.csv`.  
 ```{r}
 hot_springs <- readr::read_csv("hsprings_data.csv")
-```
-
-```{r}
-spec(hot_springs)
 ```
 
 Use the `str()` function to get an idea of the data structure of `hot_springs`.  
@@ -67,11 +64,12 @@ class(hot_springs$scientist)
 ```
 
 ```{r}
-class(hot_springs$depth_ft)
+levels(hot_springs$scientist)
 ```
 
 ```{r}
 hot_springs$scientist <- as.factor(hot_springs$scientist)
+class(hot_springs$scientist)
 ```
 
 ```{r}
@@ -83,20 +81,16 @@ levels(hot_springs$scientist)
 
 The data are from: Gaeta J., G. Sass, S. Carpenter. 2012. Biocomplexity at North Temperate Lakes LTER: Coordinated Field Studies: Large Mouth Bass Growth 2006. Environmental Data Initiative.  [link](https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-ntl&identifier=267)  
 ```{r}
-getwd()
-```
-
-```{r}
 fish <- readr::read_csv("data/Gaeta_etal_CLC_data.csv")
 ```
 
 2. What is the structure of these data?
 ```{r}
-str(fish)
+glimpse(fish)
 ```
 
 ```{r}
-glimpse(fish)
+names(fish)
 ```
 
 Notice that when the data are imported, you are presented with a message that tells you how R interpreted the column classes. This is also where error messages will appear if there are problems.  
@@ -111,38 +105,44 @@ summary(fish)
 
 `glimpse()` is another useful summary function.
 ```{r}
-glimpse(fish)
+#glimpse(fish)
 ```
 
 `nrow()` gives the numbers of rows.
 ```{r}
-nrow(fish)
+nrow(fish) #the number of rows or observations
 ```
 
 `ncol` gives the number of columns.
 ```{r}
-ncol(fish)
+ncol(fish) #the number of columns or variables
 ```
 
 `dim()` gives the dimensions.
 ```{r}
-dim(fish)
+dim(fish) #total dimensions
 ```
 
 `names` gives the column names.
 ```{r}
-names(fish)
+names(fish) #column names
 ```
 
 `head()` prints the first n rows of the data frame.
 ```{r}
-head(fish, n=15)
+head(fish, n = 10)
 ```
 
 `tail()` prinst the last n rows of the data frame.
 ```{r}
-tail(fish)
+tail(fish, n = 10)
 ```
+
+```{r}
+table(fish$lakeid)
+```
+
+
 
 `table()` is useful when you have a limited number of categorical variables. It produces fast counts of the number of observations in a variable. We will come back to this later... 
 ```{r}
@@ -154,12 +154,12 @@ We can also click on the `fish` data frame in the Environment tab or type View(f
 View(fish)
 ```
 
+## Subset
+Subset is a way of pulling out observations that meet specific criteria in a variable.  
 ```{r}
 names(fish)
 ```
 
-## Subset
-Subset is a way of pulling out observations that meet specific criteria in a variable.  
 ```{r}
 little_fish <- subset(fish, length<=110)
 little_fish
@@ -173,17 +173,17 @@ mammals <- readr::read_csv("data/mammal_lifehistories_v2.csv")
 
 2. Provide the dimensions of the data frame.
 ```{r}
-
+dim(mammals)
 ```
 
 3. Check the column names in the data frame. 
 ```{r}
-
+names(mammals)
 ```
 
 4. Use `str()` to show the structure of the data frame and its individual columns; compare this to `glimpse()`. 
 ```{r}
-
+str(mammals)
 ```
 
 ```{r}
@@ -195,6 +195,12 @@ glimpse(mammals)
 table(mammals$order)
 ```
 
+```{r}
+table(mammals$family)
+```
+```{r}
+table(mammals$Genus)
+```
 
 ## Wrap-up
 Please review the learning goals and be sure to use the code here as a reference when completing the homework.  
