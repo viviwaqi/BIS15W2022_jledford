@@ -153,7 +153,7 @@ superhero_info %>%
   count(hair_color, alignment)
 ```
 
-10. Let's explore who the really "big" superheros are. In the `superhero_info` data, which have a height over 200 or weight greater than or equal to 450?
+10. Let's explore who the really "big" superheros are. In the `superhero_info` data, which have a height over 300 or weight greater than or equal to 450?
 ```{r}
 superhero_info %>% 
   select(name, height, weight) %>% 

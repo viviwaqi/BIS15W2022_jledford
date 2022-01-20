@@ -92,6 +92,13 @@ msleep %>%
   tabyl(vore, order)
 ```
 
+```{r}
+msleep%>%
+  group_by(order)%>%
+  summarise(vore_type=n_distinct(vore))%>%
+  filter(vore_type>=2)
+```
+
 ## `summarize()`
 `summarize()` will produce summary statistics for a given variable in a data frame. For example, if you are asked to calculate the mean of `sleep_total` for large and small mammals you could do this using a combination of commands, but it isn't very efficient or clean. We can do better!  
 ```{r}
@@ -139,6 +146,7 @@ msleep %>%
             max_bodywt=max(bodywt),
             n_samples=n())
 ```
+
 ```{r}
 dim(msleep)
 ```
@@ -163,6 +171,7 @@ There are many other useful summary statistics, depending on your needs: sd(), m
 msleep %>% 
   summarize(ngenera=n_distinct(genus))
 ```
+
 ```{r}
 msleep %>% 
   tabyl(genus)
@@ -203,6 +212,7 @@ msleep %>%
   filter(order=="Carnivora") %>% 
   select(order, genus, brainwt)
 ```
+
 ```{r}
 names(msleep)
 ```
