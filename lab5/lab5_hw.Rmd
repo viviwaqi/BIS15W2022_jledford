@@ -207,5 +207,11 @@ superhero_powers %>%
   select_if(all_vars(.=="TRUE"))
 ```
 
+```{r}
+superhero_powers %>% 
+  filter(hero_names=="Legion") %>% 
+  select_if(all_vars(.=="TRUE"))
+```
+
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.   

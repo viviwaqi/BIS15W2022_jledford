@@ -87,6 +87,14 @@ names(msleep)
 ```
 
 ```{r}
+msleep %>% count(vore)
+```
+
+```{r}
+msleep %>% tabyl(vore, order)
+```
+
+```{r}
 msleep %>% 
   filter(!is.na(vore)) %>% 
   tabyl(vore, order)
@@ -95,8 +103,8 @@ msleep %>%
 ```{r}
 msleep%>%
   group_by(order)%>%
-  summarise(vore_type=n_distinct(vore))%>%
-  filter(vore_type>=2)
+  summarize(n_vores =n_distinct(vore))%>%
+  filter(n_vores>1)
 ```
 
 ## `summarize()`
@@ -216,7 +224,6 @@ msleep %>%
 ```{r}
 names(msleep)
 ```
-
 
 3. Try running the code again, but this time add `na.rm=TRUE`. What is the problem with Cetacea? Compare this to Carnivora. 
 ```{r}
