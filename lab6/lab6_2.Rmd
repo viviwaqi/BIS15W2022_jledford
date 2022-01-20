@@ -209,6 +209,13 @@ penguins %>%
             n_samples=n())
 ```
 
+```{r}
+penguins %>% 
+  group_by(species) %>% 
+  summarize(across(contains("mm"), sd, na.rm=T),
+            n_samples=n())
+```
+
 ## Wrap-up  
 
 Please review the learning goals and be sure to use the code here as a reference when completing the homework.  
