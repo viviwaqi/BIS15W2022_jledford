@@ -74,7 +74,11 @@ msleep %>%
 Here we summarize the number of NA's over all of the variables.
 ```{r}
 msleep %>% 
-  summarise_all(~(sum(is.na(.))))
+  summarise_all(~(sum(is.na(.))))%>% 
+  pivot_longer(everything(),
+    names_to= "variables",
+    values_to = "num_nas") %>% 
+  arrange(desc(num_nas))
 ```
 
 ## NA's using `purr`
@@ -122,19 +126,24 @@ amniota <- readr::read_csv("data/amniota.csv")
 ```
 
 ```{r}
-
+any_na(amniota)
 ```
 
 2. Use one of the tools explained above to summarize NA's in the data.
 ```{r}
-
+amniota %>% 
+  summarise_all(~(sum(is.na(.))))%>% 
+  pivot_longer(everything(),
+    names_to= "variables",
+    values_to = "num_nas") %>% 
+  arrange(desc(num_nas))
 ```
 
 
 3. What's going on here? Try using the `hist` function on one or more of the continuous variables.
 
 ```{r}
-
+hist(amniota$adult_body_mass_g)
 ```
 
 4. Given that we know that the output of #2 is wrong, what do you think is the best approach for dealing with NA's in the `amniote` data?  
@@ -154,7 +163,11 @@ amniota_tidy <- amniota %>%
 Now let's run that function from problem #2 again to see how we did.
 ```{r}
 amniota_tidy %>% 
-  summarise_all(~(sum(is.na(.))))
+  summarise_all(~(sum(is.na(.))))%>% 
+  pivot_longer(everything(),
+    names_to= "variables",
+    values_to = "num_nas") %>% 
+  arrange(desc(num_nas))
 ```
 
 Wow, that is a lot of missing data! Let's try `purr`. For a large data set like `amniota` this is very convenient.
@@ -194,35 +207,48 @@ For the following examples, we will use the `life_history` data for mammals. The
 
 1. Load the mammals life history data v2. Do you see any NA's?  
 ```{r}
-
+life_history <- read_csv("data/mammal_lifehistories_v2.csv")
 ```
 
 
 2. Explore the data using any method that you prefer. `skimr` provides a nice output with histograms for numeric variables.  
 ```{r}
-
+skim(life_history)
 ```
 
 
 3. Replace the entries that represent NA's in the data using `na_if()`. Double check your work.
 ```{r}
-
+life_history <- life_history %>% 
+  na_if("-999")
 ```
 
 ```{r}
-
+life_history %>% 
+  summarise_all(~(sum(is.na(.))))%>% 
+  pivot_longer(everything(),
+    names_to= "variables",
+    values_to = "num_nas") %>% 
+  arrange(desc(num_nas))
+```
+4. In which variable are the most NAs in the data frame?  _wean mass_
+```{r}
+amniota_tidy %>% 
+  summarise_all(~(sum(is.na(.))))%>% 
+  pivot_longer(everything(),
+    names_to= "variables",
+    values_to = "num_nas") %>% 
+  arrange(desc(num_nas))
 ```
 
 ```{r}
-
+amniota_tidy %>% 
+  summarise_all(~(mean(.)))%>% 
+  pivot_longer(everything(),
+    names_to= "variables",
+    values_to = "mean") %>% 
+  arrange(desc(mean))
 ```
-
-
-4. In which variable are the most NAs in the data frame?
-```{r}
-
-```
-
 
 ## That's it! Take a break and I will see you on Zoom!  
 
