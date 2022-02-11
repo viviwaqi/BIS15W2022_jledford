@@ -167,16 +167,10 @@ Here is a box plot that shows `log10.mass` by taxonomic `class.`
 glimpse(homerange)
 ```
 
+The `fill` argument is straightforward; we are filling in each box by class. What does `color` do?  
 ```{r}
 homerange %>% 
-  ggplot(aes(x = class, y = log10.mass, fill=class)) +
-  geom_boxplot()
-```
-
-I use `group` to make individual box plots for each taxon.
-```{r}
-homerange %>% 
-  ggplot(aes(x = class, y = log10.mass, group = taxon)) +
+  ggplot(aes(x = class, y = log10.mass, color=class)) +
   geom_boxplot()
 ```
 
@@ -184,6 +178,19 @@ I can also use `fill` to associate the different taxa with a color coded key.
 ```{r}
 homerange %>% 
   ggplot(aes(x = class, y = log10.mass, fill = taxon)) +
+  geom_boxplot()
+```
+
+`group` can work the same way as fill, but it does not color code the boxes.  
+```{r}
+homerange %>% 
+  ggplot(aes(x = class, y = log10.mass, group=taxon)) +
+  geom_boxplot()
+```
+
+```{r}
+homerange %>% 
+  ggplot(aes(x = realm, y = log10.mass, fill=taxon)) +
   geom_boxplot()
 ```
 
